@@ -1,0 +1,9 @@
+D:\Projects\SocketServer\SSLServers\bin\Debug\SSLServers.dll
+D:\Projects\SocketServer\SSLServers\bin\Debug\SSLServers.pdb
+D:\Projects\SocketServer\SSLServers\obj\Debug\SSLServers.csprojAssemblyReference.cache
+D:\Projects\SocketServer\SSLServers\obj\Debug\SSLServers.csproj.CoreCompileInputs.cache
+D:\Projects\SocketServer\SSLServers\obj\Debug\SSLServers.dll
+D:\Projects\SocketServer\SSLServers\obj\Debug\SSLServers.pdb
+D:\Projects\SocketServer\SSLServers\bin\Debug\log4net.dll
+D:\Projects\SocketServer\SSLServers\bin\Debug\log4net.xml
+D:\Projects\SocketServer\SSLServers\obj\Debug\SSLServers.csproj.CopyComplete
