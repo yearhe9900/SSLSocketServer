@@ -79,22 +79,10 @@ namespace SSLServers
 
         public bool OptionReuseAddress { get; set; }
 
-        /// <summary>
-        /// Option: enables a socket to be bound for exclusive access
-        /// </summary>
-        /// <remarks>
-        /// This option will enable/disable SO_EXCLUSIVEADDRUSE if the OS support this feature
-        /// </remarks>
         public bool OptionExclusiveAddressUse { get; set; }
 
-        /// <summary>
-        /// Option: receive buffer size
-        /// </summary>
         public int OptionReceiveBufferSize { get; set; } = 8192;
 
-        /// <summary>
-        /// Option: send buffer size
-        /// </summary>
         public int OptionSendBufferSize { get; set; } = 8192;
 
         #region 开启/关闭 服务
@@ -204,7 +192,7 @@ namespace SSLServers
 
         #endregion
 
-        #region Accepting clients
+        #region 监听器
 
         /// <summary>
         /// 启动监听
@@ -248,7 +236,7 @@ namespace SSLServers
 
         #endregion
 
-        #region Session management
+        #region 客户端管理
 
         protected readonly ConcurrentDictionary<Guid, SslSession> Sessions = new ConcurrentDictionary<Guid, SslSession>();
 
@@ -368,7 +356,7 @@ namespace SSLServers
 
         #endregion
 
-        #region Error handling
+        #region 异常处理
 
         private void SendError(SocketError error)
         {
