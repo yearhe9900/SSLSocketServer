@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Net.Security;
 using System.Net.Sockets;
 using System.Text;
@@ -12,6 +13,8 @@ namespace SSLServers
     /// </summary>
     public class SslSession : IDisposable
     {
+        private readonly static ILog _log = LogManager.GetLogger(typeof(SslSession));
+
         /// <summary>
         /// 初始化客户端对象信息
         /// </summary>
@@ -103,6 +106,7 @@ namespace SSLServers
             }
             catch (Exception e)
             {
+                _log.Error(e.ToString());
                 SendError(SocketError.NotConnected);
                 Disconnect();
             }
@@ -452,8 +456,9 @@ namespace SSLServers
 
                 TryReceive();
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                _log.Error("ProcessHandshake：" + e.ToString());
                 SendError(SocketError.NotConnected);
                 Disconnect();
             }

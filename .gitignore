@@ -2,9 +2,13 @@
 # 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
 ################################################################################
 
-/SSLServers/bin/Debug
-/SocketServer/bin/Debug
-/SocketServer/obj/Debug
-/SSLServers/obj/Debug
+/SSLServers/bin/Debug/*
+/SocketServer/bin/Debug/*
+/SocketServer/obj/Debug/*
+/SSLServers/obj/Debug/*
+/SSLServers/bin/Release/*
+/SocketServer/bin/Release/*
+/SocketServer/obj/Release/*
+/SSLServers/obj/Release/*
 /.vs/*
 

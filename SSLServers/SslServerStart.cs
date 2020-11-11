@@ -24,6 +24,7 @@ namespace SSLServers
 
         protected override void OnHandshaked()
         {
+            _log.Info($"ID为{Id}的客户端握手成功!");
             Console.WriteLine($"ID为{Id}的客户端握手成功!");
         }
 
