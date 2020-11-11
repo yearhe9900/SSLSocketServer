@@ -3,3 +3,7 @@
 ################################################################################
 
 /SSLServers/bin/Debug
+/SocketServer/bin/Debug
+/SocketServer/obj/Debug
+/SSLServers/obj/Debug
+/.vs/SocketServer/v16
