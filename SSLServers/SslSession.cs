@@ -426,7 +426,7 @@ namespace SSLServers
         #region IO processing
 
         /// <summary>
-        /// This method is invoked when an asynchronous handshake operation completes
+        /// 验证服务端和客户端是否通信成功
         /// </summary>
         private void ProcessHandshake(IAsyncResult result)
         {
@@ -459,9 +459,6 @@ namespace SSLServers
             }
         }
 
-        /// <summary>
-        /// This method is invoked when an asynchronous receive operation completes
-        /// </summary>
         private void ProcessReceive(IAsyncResult result)
         {
             try
@@ -469,32 +466,25 @@ namespace SSLServers
                 if (!IsHandshaked)
                     return;
 
-                // Validate SSL stream Id
                 var sslStreamId = result.AsyncState as Guid?;
                 if (_sslStreamId != sslStreamId)
                     return;
 
-                // End the SSL read
                 long size = _sslStream.EndRead(result);
 
-                // Received some data from the client
                 if (size > 0)
                 {
-                    // Update statistic
                     BytesReceived += size;
                     Interlocked.Add(ref Server._bytesReceived, size);
 
-                    // Call the buffer received handler
                     OnReceived(_receiveBuffer.Data, 0, size);
 
-                    // If the receive buffer is full increase its size
                     if (_receiveBuffer.Capacity == size)
                         _receiveBuffer.Reserve(2 * size);
                 }
 
                 _receiving = false;
 
-                // If zero is returned from a read operation, the remote end has closed the connection
                 if (size > 0)
                 {
                     if (!result.CompletedSynchronously)
@@ -510,14 +500,10 @@ namespace SSLServers
             }
         }
 
-        /// <summary>
-        /// This method is invoked when an asynchronous send operation completes
-        /// </summary>
         private void ProcessSend(IAsyncResult result)
         {
             try
             {
-                // Validate SSL stream Id
                 var sslStreamId = result.AsyncState as Guid?;
                 if (_sslStreamId != sslStreamId)
                     return;
@@ -525,37 +511,27 @@ namespace SSLServers
                 if (!IsHandshaked)
                     return;
 
-                // End the SSL write
                 _sslStream.EndWrite(result);
 
                 long size = _sendBufferFlush.Size;
 
-                // Send some data to the client
                 if (size > 0)
                 {
-                    // Update statistic
                     BytesSending -= size;
                     BytesSent += size;
                     Interlocked.Add(ref Server._bytesSent, size);
 
-                    // Increase the flush buffer offset
                     _sendBufferFlushOffset += size;
 
-                    // Successfully send the whole flush buffer
                     if (_sendBufferFlushOffset == _sendBufferFlush.Size)
                     {
-                        // Clear the flush buffer
                         _sendBufferFlush.Clear();
                         _sendBufferFlushOffset = 0;
                     }
-
-                    //// Call the buffer sent handler
-                    //OnSent(size, BytesPending + BytesSending);
                 }
 
                 _sending = false;
 
-                // Try to send again if the session is valid
                 TrySend();
             }
             catch (Exception)
