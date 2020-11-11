@@ -6,4 +6,5 @@
 /SocketServer/bin/Debug
 /SocketServer/obj/Debug
 /SSLServers/obj/Debug
-/.vs/SocketServer/v16
+/.vs/*
+
