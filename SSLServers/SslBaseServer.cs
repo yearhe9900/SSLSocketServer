@@ -262,7 +262,7 @@ namespace SSLServers
         /// <param name="id"></param>
         internal void UnregisterSession(Guid id)
         {
-            Sessions.TryRemove(id, out SslSession temp);
+            _ = Sessions.TryRemove(id, out _);
         }
 
         #endregion
