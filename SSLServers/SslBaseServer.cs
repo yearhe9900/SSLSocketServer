@@ -256,6 +256,10 @@ namespace SSLServers
             Sessions.TryAdd(session.Id, session);
         }
 
+        /// <summary>
+        /// 移除一个指定的客户端
+        /// </summary>
+        /// <param name="id"></param>
         internal void UnregisterSession(Guid id)
         {
             Sessions.TryRemove(id, out SslSession temp);
