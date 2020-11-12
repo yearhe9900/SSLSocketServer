@@ -565,41 +565,10 @@ namespace SSLServers
         /// </summary>
         protected virtual void OnDisconnected() { }
 
-        /// <summary>
-        /// Handle buffer received notification
-        /// </summary>
-        /// <param name="buffer">Received buffer</param>
-        /// <param name="offset">Received buffer offset</param>
-        /// <param name="size">Received buffer size</param>
-        /// <remarks>
-        /// Notification is called when another chunk of buffer was received from the client
-        /// </remarks>
         protected virtual void OnReceived(byte[] buffer, long offset, long size) { }
 
-        ///// <summary>
-        ///// Handle buffer sent notification
-        ///// </summary>
-        ///// <param name="sent">Size of sent buffer</param>
-        ///// <param name="pending">Size of pending buffer</param>
-        ///// <remarks>
-        ///// Notification is called when another chunk of buffer was sent to the client.
-        ///// This handler could be used to send another buffer to the client for instance when the pending size is zero.
-        ///// </remarks>
-        //protected virtual void OnSent(long sent, long pending) { }
-
-        /// <summary>
-        /// Handle empty send buffer notification
-        /// </summary>
-        /// <remarks>
-        /// Notification is called when the send buffer is empty and ready for a new data to send.
-        /// This handler could be used to send another buffer to the client.
-        /// </remarks>
         protected virtual void OnEmpty() { }
 
-        /// <summary>
-        /// Handle error notification
-        /// </summary>
-        /// <param name="error">Socket error code</param>
         protected virtual void OnError(SocketError error) { }
 
         #endregion

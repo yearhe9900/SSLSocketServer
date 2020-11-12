@@ -12,3 +12,9 @@
 /SSLServers/obj/Release/*
 /.vs/*
 
+/ssl_tools/证书说明.txt
+/ssl_tools/tserver.keystore
+/ssl_tools/tclient.keystore
+/ssl_tools/kserver.pfx
+/ssl_tools/kserver.keystore
+/ssl_tools/kclient.keystore

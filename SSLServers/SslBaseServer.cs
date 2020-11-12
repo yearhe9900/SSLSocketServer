@@ -113,7 +113,6 @@ namespace SSLServers
             _acceptorEventArg = new SocketAsyncEventArgs();
             _acceptorEventArg.Completed += OnAsyncCompleted;
 
-
             _acceptorSocket = CreateSocket();
 
             IsSocketDisposed = false;
@@ -195,7 +194,7 @@ namespace SSLServers
         #region 监听器
 
         /// <summary>
-        /// 启动监听
+        /// 启动消息接收监听
         /// </summary>
         /// <param name="e"></param>
         private void StartAccept(SocketAsyncEventArgs e)
