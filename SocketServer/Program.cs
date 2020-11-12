@@ -28,7 +28,9 @@ namespace SocketServer
             }
             else
             {
-                SSLServers.SslServerStart.Start(socketPort);
+                string sslFilePath = Environment.CurrentDirectory + "\\" + ConfigurationManager.AppSettings["SslFilePath"];
+                string sslPassword = ConfigurationManager.AppSettings["SslPassword"];
+                SSLServers.SslServerStart.Start(socketPort, sslFilePath, sslPassword);
             }
         }
     }

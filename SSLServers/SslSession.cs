@@ -106,7 +106,7 @@ namespace SSLServers
             }
             catch (Exception e)
             {
-                _log.Error(e.ToString());
+                _log.Error("Connect：" + e.ToString());
                 SendError(SocketError.NotConnected);
                 Disconnect();
             }

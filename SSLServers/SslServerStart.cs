@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Security;
 using System.Net.Sockets;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
@@ -70,17 +71,38 @@ namespace SSLServers
         }
     }
 
+
+
     public class SslServerStart
     {
         /// <summary>
+        /// 总是接受 认证平台 服务器的证书
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="certificate"></param>
+        /// <param name="chain"></param>
+        /// <param name="errors"></param>
+        /// <returns></returns>
+        public static bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        {
+            if (sslPolicyErrors == SslPolicyErrors.None)
+                return true;
+
+            Console.WriteLine("Certificate error: {0}", sslPolicyErrors);
+            return false;
+        }
+
+        /// <summary>
         /// 服务开启
         /// </summary>
-        /// <param name="port">Socket端口号</param>
-        public static void Start(int port = 2222)
+        /// <param name="port">Scoket端口号</param>
+        /// <param name="sslFilePath">PFX证书路径</param>
+        /// <param name="sslPassword"></param>
+        public static void Start(int port, string sslFilePath, string sslPassword)
         {
             Console.WriteLine($"启动端口：{port} 监听");
 
-            var context = new SslContext(SslProtocols.Tls12, new X509Certificate(Environment.CurrentDirectory + "\\server.pfx", "longshine"));
+            var context = new SslContext(SslProtocols.Tls12, new X509Certificate2(sslFilePath, sslPassword));
 
             // 创建一个新的Socket ssl服务
             var server = new SslServer(context, IPAddress.Any, port);
