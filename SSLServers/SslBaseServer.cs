@@ -174,10 +174,6 @@ namespace SSLServers
             return true;
         }
 
-        /// <summary>
-        /// 重启服务
-        /// </summary>
-        /// <returns></returns>
         public virtual bool Restart()
         {
             if (!Stop())
