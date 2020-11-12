@@ -370,9 +370,6 @@ namespace SSLServers
 
         #region 释放资源
 
-        /// <summary>
-        /// Disposed flag
-        /// </summary>
         public bool IsDisposed { get; private set; }
 
         /// <summary>
@@ -380,7 +377,6 @@ namespace SSLServers
         /// </summary>
         public bool IsSocketDisposed { get; private set; } = true;
 
-        // Implement IDisposable.
         public void Dispose()
         {
             Dispose(true);
